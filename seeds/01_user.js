@@ -1,0 +1,13 @@
+
+exports.seed = function(knex, Promise) {
+  // Deletes ALL existing entries
+  return knex('user').del()
+    .then(function () {
+      // Inserts seed entries
+      return knex('user').insert([
+        { email: 'pfaso@mylandhawaii.com', password:'Boardgamer'},
+        { email: 'quinlayen@gmail.com', password:'Boardgamer'},
+        { email: 'peterfasore@gmail.com', password:'Boardgamer'}
+      ]);
+    });
+};
