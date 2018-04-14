@@ -36,25 +36,27 @@ const registerUser = (email, password) => {
     .then(data => {
       if (data.length !== 0) {
         return 'Email already exists';
-      }else{
+      } else {
         return knex('user').insert({ email: email, password: password });
       }
     })
-    
     .then(data => {
       return data;
     });
+  };
+  const newPassword = id => {
+    return knex('user')
+      .update({password: 'Boardgamer'})
+      .where({ user_id: id })
+      .then(data => {
+        return data;
+      })
+  }
 
-  // return knex('user')
-  //   .insert({ email: email, password: password })
-  //   .whereNotExists(knex.select('user').where({ email: email }))
-  //   .then(data =>{
-  //     console.log('data', data.rows);
-  //   })
-};
 
 module.exports = {
   getUserByID,
   loginUser,
-  registerUser
+  registerUser,
+  newPassword
 };
