@@ -53,10 +53,27 @@ const registerUser = (email, password) => {
       })
   }
 
+  const deleteUser = id =>{
+    return knex('user')
+    .where({user_id:id})
+    .then((data)=>{
+      if (data.length !== 0){
+        return knex('user')
+        .where({user_id:id}).del()
+      }else{
+        return ('User does not exist')
+      }
+    })
+    .then ((data)=>{
+      return data
+    })
+  }
+
 
 module.exports = {
   getUserByID,
   loginUser,
   registerUser,
-  newPassword
+  newPassword,
+  deleteUser
 };
